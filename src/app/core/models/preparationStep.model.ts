@@ -1,4 +1,4 @@
 export interface PreparationStep {
   id?: number;
-  description?: number;
+  description?: string;
 }

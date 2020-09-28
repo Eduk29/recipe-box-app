@@ -1,5 +1,4 @@
 export interface SystemOption {
-  id?: number;
-  systemValue?: string;
+  systemValue?: number;
   displayValue?: string;
 }
