@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getRecipes(): void {
     this.loadingData = true;
     this.recipeService
-      .getRecipes()
+      .listAll()
       .pipe(
         takeUntil(this.onDestroy$),
         finalize(() => this.loadingData = false)
