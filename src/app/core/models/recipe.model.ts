@@ -9,4 +9,5 @@ export interface Recipe {
   difficultyLevel?: SystemOption;
   ingredients?: Ingredient[];
   preparationSteps?: PreparationStep[];
+  urlImage?: string;
 }
