@@ -1,3 +1,4 @@
+import { transformFirstLetterInUppercase } from './../../../core/utils/system.utils';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { Recipe } from './../../../core/models/recipe.model';
@@ -15,6 +16,14 @@ export class RecipeDetailCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  displayServeToComplement(): string {
+    return this.recipe.serverTo > 1 ? 'peoples' : 'people';
+  }
+
+  normalizeFirstLetter(value: string): string {
+    return transformFirstLetterInUppercase(value);
   }
 
 }

@@ -1,15 +1,38 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>{{ recipe?.name }}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
+  <img mat-card-image src="{{ recipe?.urlImage }}" alt="recipe-image" class="px-4">
+  <mat-card-content class="px-2">
+    <div class="row">
+      <div class="col-4 d-flex flex-column">
+        <span class="mat-subheading-2 m-0 text-center">Rendimento</span>
+        <span class="mat-subheading-1 m-0 text-center"> <strong>{{ recipe?.serverTo }}</strong></span>
+      </div>
+      <div class="col-4 d-flex flex-column">
+        <span class="mat-subheading-2 m-0 text-center">Nível de Dificuldade</span>
+        <span class="mat-subheading-1 m-0 text-center">
+          <strong>{{ normalizeFirstLetter(recipe?.difficultyLevel?.displayValue) }}</strong></span>
+      </div>
+      <div class="col-4 d-flex flex-column">
+        <span class="mat-subheading-2 m-0 text-center">Tipo de Prato</span>
+        <span class="mat-subheading-1 m-0 text-center">
+          <strong>{{ normalizeFirstLetter(recipe?.mealType?.displayValue) }}</strong></span>
+      </div>
+    </div>
+    <div class="row flex-column px-3">
+      <span class="mat-headline">Ingredientes</span>
+      <div *ngFor="let ingredient of recipe?.ingredients" class="d-flex flex-column">
+        <div class="d-flex flex-row">
+          <span class="mat-body-1 px-1">{{ ingredient?.amount }} {{ ingredient?.unitAmout }} de
+            {{ ingredient?.name }}</span>
+          <span *ngIf="ingredient?.alternativeIngredient">ou {{ingredient?.alternativeIngredient?.amount}}
+            {{ ingredient?.alternativeIngredient?.unitAmout }} de
+            {{ ingredient?.alternativeIngredient?.name }}</span>
+        </div>
+
+      </div>
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button>LIKE</button>
