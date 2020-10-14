@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: false,
+  production: false,
+  urlApi: 'https://my-json-server.typicode.com/Eduk29/recipe-box-api'
 };
 
 /*

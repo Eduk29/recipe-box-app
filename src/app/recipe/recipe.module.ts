@@ -1,7 +1,9 @@
+import { RecipeService } from './services/recipe.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { CoreModule } from './../core/core.module';
@@ -13,6 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { RecipeDetailsComponent } from './pages/recipe-details/recipe-details.component';
 import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeComponent } from './recipe.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,10 +32,16 @@ import { RecipeComponent } from './recipe.component';
   imports: [
     CommonModule,
     CoreModule,
+    HttpClientModule,
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
     RecipeRoutingModule
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    RecipeService
   ]
 })
 export class RecipeModule { }
