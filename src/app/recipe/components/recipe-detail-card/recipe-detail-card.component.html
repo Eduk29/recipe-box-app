@@ -28,9 +28,20 @@
         </li>
       </ul>
     </div>
+    <div class="row flex-column px-3">
+      <span class="mat-headline">Modo de fazer</span>
+      <ul *ngFor="let step of recipe?.preparationSteps" class="d-flex flex-row m-0">
+        <div class="col m-auto">
+          <span class="mat-title">{{ step?.id }}.</span>
+        </div>
+        <div class="col-11 my-auto">
+          <span>{{ step?.description }}</span>
+        </div>
+      </ul>
+    </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <!-- <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button> -->
   </mat-card-actions>
 </mat-card>
