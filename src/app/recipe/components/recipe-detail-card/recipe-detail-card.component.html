@@ -30,14 +30,10 @@
     </div>
     <div class="row flex-column px-3">
       <span class="mat-headline">Modo de fazer</span>
-      <ul *ngFor="let step of recipe?.preparationSteps" class="d-flex flex-row m-0">
-        <div class="col m-auto">
-          <span class="mat-title">{{ step?.id }}.</span>
-        </div>
-        <div class="col-11 my-auto">
-          <span>{{ step?.description }}</span>
-        </div>
-      </ul>
+      <div *ngFor="let step of recipe?.preparationSteps" class="d-flex flex-row my-2 ml-4">
+        <span class="d-flex align-items-center mat-title pr-2 m-0"> {{ step?.id }})</span>
+        <span class="mat-subheading-2 px-2 m-0">{{ step?.description }}</span>
+      </div>
     </div>
   </mat-card-content>
   <mat-card-actions>
