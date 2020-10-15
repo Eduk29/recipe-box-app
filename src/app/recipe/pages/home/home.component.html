@@ -1,0 +1,9 @@
+<div class="container">
+  <div *ngIf="!loadingData" class="row my-4">
+    <app-recipe-list [recipeList]="recipeList"></app-recipe-list>
+  </div>
+
+  <div *ngIf="loadingData" class="d-flex flex-row my-5 justify-content-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
