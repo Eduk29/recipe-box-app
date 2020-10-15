@@ -17,6 +17,7 @@ import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeComponent } from './recipe.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
+import { IngredientDisplayDataComponent } from './components/ingredient-display-data/ingredient-display-data.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeListComponent,
     RecipeCardComponent,
     RecipeDetailsComponent,
-    RecipeDetailCardComponent
+    RecipeDetailCardComponent,
+    IngredientDisplayDataComponent
   ],
   imports: [
     CommonModule,

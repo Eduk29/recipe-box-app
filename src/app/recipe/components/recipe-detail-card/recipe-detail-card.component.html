@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card *ngIf="!!recipe" class="example-card">
   <mat-card-header>
     <mat-card-title>{{ recipe?.name }}</mat-card-title>
   </mat-card-header>
@@ -22,16 +22,11 @@
     </div>
     <div class="row flex-column px-3">
       <span class="mat-headline">Ingredientes</span>
-      <div *ngFor="let ingredient of recipe?.ingredients" class="d-flex flex-column">
-        <div class="d-flex flex-row">
-          <span class="mat-body-1 px-1">{{ ingredient?.amount }} {{ ingredient?.unitAmout }} de
-            {{ ingredient?.name }}</span>
-          <span *ngIf="ingredient?.alternativeIngredient">ou {{ingredient?.alternativeIngredient?.amount}}
-            {{ ingredient?.alternativeIngredient?.unitAmout }} de
-            {{ ingredient?.alternativeIngredient?.name }}</span>
-        </div>
-
-      </div>
+      <ul *ngFor="let ingredient of recipe?.ingredients" class="d-flex flex-column">
+        <li>
+          <app-ingredient-display-data [ingredient]="ingredient"></app-ingredient-display-data>
+        </li>
+      </ul>
     </div>
   </mat-card-content>
   <mat-card-actions>
