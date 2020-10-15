@@ -30,9 +30,8 @@
     </div>
     <div class="row flex-column px-3">
       <span class="mat-headline">Modo de fazer</span>
-      <div *ngFor="let step of recipe?.preparationSteps" class="d-flex flex-row my-2 ml-4">
-        <span class="d-flex align-items-center mat-title pr-2 m-0"> {{ step?.id }})</span>
-        <span class="mat-subheading-2 px-2 m-0">{{ step?.description }}</span>
+      <div *ngFor="let step of recipe?.preparationSteps" class="my-2 ml-4">
+        <app-preparation-steps-display-data [preparationStep]="step"></app-preparation-steps-display-data>
       </div>
     </div>
   </mat-card-content>
