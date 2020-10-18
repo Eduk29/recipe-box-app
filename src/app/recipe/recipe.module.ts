@@ -19,6 +19,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { IngredientDisplayDataComponent } from './components/ingredient-display-data/ingredient-display-data.component';
 import { PreparationStepsDisplayDataComponent } from './components/preparation-steps-display-data/preparation-steps-display-data.component';
+import { RelatedRecipesComponent } from './components/related-recipes/related-recipes.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PreparationStepsDisplayDataComponent } from './components/preparation-s
     RecipeDetailsComponent,
     RecipeDetailCardComponent,
     IngredientDisplayDataComponent,
-    PreparationStepsDisplayDataComponent
+    PreparationStepsDisplayDataComponent,
+    RelatedRecipesComponent
   ],
   imports: [
     CommonModule,

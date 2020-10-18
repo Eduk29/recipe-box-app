@@ -16,8 +16,9 @@ export class RecipeService {
     this.urlAPI = `${environment.urlApi}/recipe`;
   }
 
-  listAll(): Observable<Recipe[]> {
-    return this.httpRequest.get<Recipe[]>(this.urlAPI);
+  listAll(filter?: string): Observable<Recipe[]> {
+    const url = !!filter ? `${this.urlAPI}${filter}` : `${this.urlAPI}`;
+    return this.httpRequest.get<Recipe[]>(url);
   }
 
   getRecipe(id: number): Observable<Recipe> {

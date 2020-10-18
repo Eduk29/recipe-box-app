@@ -14,6 +14,6 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="d-flex flex-row justify-content-end">
-    <button [routerLink]="[recipe.id, 'details']" mat-button>Detalhes</button>
+    <button type="button" (click)="navigateToDetails(recipe.id)" mat-button>Detalhes</button>
   </mat-card-actions>
 </mat-card>
