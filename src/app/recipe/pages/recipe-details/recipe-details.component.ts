@@ -1,5 +1,5 @@
-import { takeUntil, finalize } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { takeUntil, finalize, switchMap, tap, map, pluck } from 'rxjs/operators';
+import { forkJoin, Subject, Observable } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject<void>();
   public loadingData: boolean;
   public recipe: Recipe;
+  public relatedRecipes: Recipe[];
 
   constructor(private activatedRoute: ActivatedRoute, private recipeService: RecipeService) {
     this.loadingData = false;
@@ -42,14 +43,33 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
   }
 
   getRecipe(): void {
+    this.loadingData = true;
     this.recipeService
       .getRecipe(this.recipeId)
       .pipe(
+        switchMap((recipe) => this.getRelatedRecipes(recipe)),
+        pluck(0),
         takeUntil(this.onDestroy$),
         finalize(() => this.loadingData = false)
       )
       .subscribe((recipe: Recipe) => {
         this.recipe = recipe;
       });
+  }
+
+  getRelatedRecipes(recipeItem: Recipe): Observable<any> {
+    const filter = `?mealType.systemValue=${recipeItem.mealType.systemValue}`;
+    this.loadingData = true;
+    return this.recipeService
+      .listAll(filter)
+      .pipe(
+        tap((relatedRecipes: Recipe[]) => this.relatedRecipes = this.filterRelatedRecipes(relatedRecipes, recipeItem)),
+        takeUntil(this.onDestroy$),
+        finalize(() => this.loadingData = false)
+      );
+  }
+
+  private filterRelatedRecipes(relatedRecipes: Recipe[], recipeItem: Recipe): Recipe[] {
+    return relatedRecipes.filter(item => item.id !== recipeItem.id);
   }
 }

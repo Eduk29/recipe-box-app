@@ -1,0 +1,10 @@
+<div class="d-flex flex-column">
+  <span class="mat-title"> Receitas relacionadas </span>
+  <div *ngFor="let relatedRecipe of relatedRecipes">
+    <app-recipe-card [recipe]="relatedRecipe"></app-recipe-card>
+  </div>
+  <div *ngIf="!!relatedRecipes && relatedRecipes.length === 0" class="d-flex flex-column align-items-center">
+    <em class="fas fa-times fa-2x p-1"></em>
+    <span class="mat-subheading-2"> Sem receitas relacionadas </span>
+  </div>
+</div>
