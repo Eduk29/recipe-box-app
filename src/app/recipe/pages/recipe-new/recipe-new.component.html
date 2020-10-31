@@ -1,0 +1,16 @@
+<mat-card class="container">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-2">
+        url imagem
+      </div>
+      <div *ngIf="!!recipeForm" class="col-10">
+        <app-recipe-form [recipeForm]="recipeForm" (emitterOnSubmit)="onSubmit()"></app-recipe-form>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,3 +1,4 @@
+import { RecipeNewComponent } from './pages/recipe-new/recipe-new.component';
 import { RecipeDetailsComponent } from './pages/recipe-details/recipe-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,7 +7,8 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: ':id/details', component: RecipeDetailsComponent }
+  { path: ':id/details', component: RecipeDetailsComponent },
+  { path: 'new', component: RecipeNewComponent }
 ];
 
 @NgModule({

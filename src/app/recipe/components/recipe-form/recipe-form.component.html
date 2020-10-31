@@ -1,0 +1,9 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <div class="d-flex flex-row">
+    <mat-form-field class="w-50">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </div>
+  <button mat-button type="submit">Send</button>
+</form>
