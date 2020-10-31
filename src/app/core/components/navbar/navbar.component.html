@@ -3,4 +3,7 @@
     aria-label="Example icon-button with menu icon">
     <span> Recipe Box </span>
   </button>
+  <button *ngIf="showNewRecipeButton" class="add-button mr-4" mat-fab color="accent" [routerLink]="['recipe','new']">
+    <em class="fas fa-plus"></em>
+  </button>
 </mat-toolbar>
