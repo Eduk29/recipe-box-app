@@ -1,7 +1,5 @@
 export interface Ingredient {
   id?: number;
-  name?: string;
-  amount?: number;
-  unitAmout?: string;
+  description?: string;
   alternativeIngredient?: Ingredient;
 }

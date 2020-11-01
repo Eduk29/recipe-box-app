@@ -1,8 +1,5 @@
 <div *ngIf="!!ingredient" class="d-flex flex-row">
-  <span class="px-1">{{ ingredient?.amount }}</span>
-  <span>{{ ingredient?.unitAmout }}</span>
-  <span *ngIf="!!ingredient.unitAmout" class="px-1">de</span>
-  <span>{{ ingredient?.name }}</span>
+  <span class="px-1">{{ ingredient?.description }}</span>
   <div *ngIf="!!ingredient.alternativeIngredient" class="d-flex flex-row">
     <span class="px-1">or</span>
     <app-ingredient-display-data [ingredient]="ingredient.alternativeIngredient"></app-ingredient-display-data>
