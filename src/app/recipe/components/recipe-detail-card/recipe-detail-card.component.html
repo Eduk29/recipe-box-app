@@ -12,27 +12,19 @@
       <div class="col-4 d-flex flex-column">
         <span class="mat-subheading-2 m-0 text-center">Nível de Dificuldade</span>
         <span class="mat-subheading-1 m-0 text-center">
-          <strong>{{ normalizeFirstLetter(recipe?.difficultyLevel?.displayValue) }}</strong></span>
+          <strong>{{ displaySystemOptionsLabel(recipe?.difficultyLevel) }}</strong></span>
       </div>
       <div class="col-4 d-flex flex-column">
         <span class="mat-subheading-2 m-0 text-center">Tipo de Prato</span>
         <span class="mat-subheading-1 m-0 text-center">
-          <strong>{{ normalizeFirstLetter(recipe?.mealType?.displayValue) }}</strong></span>
+          <strong>{{ displaySystemOptionsLabel(recipe?.mealType) }}</strong></span>
       </div>
     </div>
     <div class="row flex-column px-3">
-      <span class="mat-headline">Ingredientes</span>
-      <ul *ngFor="let ingredient of recipe?.ingredients" class="d-flex flex-column">
-        <li>
-          <app-ingredient-display-data [ingredient]="ingredient"></app-ingredient-display-data>
-        </li>
-      </ul>
+      <app-ingredient-list [ingredients]="recipe?.ingredients"></app-ingredient-list>
     </div>
     <div class="row flex-column px-3">
-      <span class="mat-headline">Modo de fazer</span>
-      <div *ngFor="let step of recipe?.preparationSteps" class="my-2 ml-4">
-        <app-preparation-steps-display-data [preparationStep]="step"></app-preparation-steps-display-data>
-      </div>
+      <app-preparation-steps-list [preparationSteps]="recipe?.preparationSteps"></app-preparation-steps-list>
     </div>
   </mat-card-content>
   <mat-card-actions>

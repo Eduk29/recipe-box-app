@@ -1,0 +1,14 @@
+<h3> Ingredientes </h3>
+<ul *ngIf="!!ingredients && ingredients.length > 0; else noIngredients">
+  <li *ngFor="let ingredient of ingredients">
+    <app-ingredient-display-data [ingredient]="ingredient" [readOnly]="readOnly"
+      (eventRemoveIngredient)="removeIngredient($event)">
+    </app-ingredient-display-data>
+  </li>
+</ul>
+
+<ng-template #noIngredients>
+  <ul>
+    <li>Sem ingredientes adicionados.</li>
+  </ul>
+</ng-template>

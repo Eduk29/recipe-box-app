@@ -1,9 +1,58 @@
-<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-  <div class="d-flex flex-row">
-    <mat-form-field class="w-50">
+<form #recipeForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <mat-form-field class="col-6">
       <mat-label>Nome</mat-label>
-      <input matInput formControlName="name">
+      <input name="name" matInput [(ngModel)]="recipe.name">
+    </mat-form-field>
+
+    <mat-form-field class="col-2">
+      <mat-label>Rendimento</mat-label>
+      <input name="servesTo" matInput type="number" min="1" [(ngModel)]="recipe.serverTo">
+    </mat-form-field>
+
+    <mat-form-field class="col-4">
+      <mat-label>Tipo de Prato</mat-label>
+      <mat-select name="mealType" [(ngModel)]="recipe.mealType">
+        <mat-option *ngFor="let mealType of mealTypeOptions" [value]="mealType">
+          {{ displaySelectFilterLabel(mealType) }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
+  <div class="row">
+    <mat-form-field class="col-8">
+      <mat-label>Avatar (URL)</mat-label>
+      <input matInput name="url-image" [(ngModel)]="recipe.urlImage">
+    </mat-form-field>
+
+    <mat-form-field class="col-4">
+      <mat-label>Nível de Dificuldade</mat-label>
+      <mat-select name="difficultyLevel" [(ngModel)]="recipe.difficultyLevel">
+        <mat-option *ngFor="let difficultyLevel of difficultyLevelOptions" [value]="difficultyLevel">
+          {{ displaySelectFilterLabel(difficultyLevel) }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="d-flex flex-column py-2">
+
+    <app-ingredient-list [ingredients]="recipe?.ingredients" [readOnly]="false"
+      (eventRemoveIngredient)="removeIngredient($event)">
+    </app-ingredient-list>
+
+    <div class="row align-items-center">
+      <mat-form-field class="col-10">
+        <mat-label>Ingrediente</mat-label>
+        <input name="ingredient-descripition" matInput placeholder="Ex. 1kg de farinha de trigo"
+          [(ngModel)]="newIngredient.description">
+      </mat-form-field>
+      <button type="button" matTooltip="Adicionar ingrediente" mat-mini-fab color="primary"
+        (click)="addNewIngredient()">
+        <em class="fas fa-plus"></em>
+      </button>
+    </div>
+  </div>
+
   <button mat-button type="submit">Send</button>
 </form>

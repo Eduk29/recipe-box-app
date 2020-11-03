@@ -1,3 +1,5 @@
+import { environment } from './../../../../environments/environment';
+import { SystemOption } from './../../../core/models/system-option.model';
 import { transformFirstLetterInUppercase } from './../../../core/utils/system.utils';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
@@ -18,12 +20,13 @@ export class RecipeDetailCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayServeToComplement(): string {
+  public displayServeToComplement(): string {
     return this.recipe.serverTo > 1 ? 'peoples' : 'people';
   }
 
-  normalizeFirstLetter(value: string): string {
-    return transformFirstLetterInUppercase(value);
+  public displaySystemOptionsLabel(systemOption: SystemOption): string {
+    const systemOptionLabel = environment.selectedLanguage === 'Portuguese' ?
+      systemOption.displayValuePortuguese : systemOption.displayValueEnglish;
+    return transformFirstLetterInUppercase(systemOptionLabel);
   }
-
 }

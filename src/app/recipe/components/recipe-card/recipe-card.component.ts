@@ -1,3 +1,5 @@
+import { environment } from './../../../../environments/environment';
+import { SystemOption } from './../../../core/models/system-option.model';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/core/models/recipe.model';
@@ -21,8 +23,9 @@ export class RecipeCardComponent implements OnInit {
     }
   }
 
-  displayMealTypeNormalized(mealType: string): string {
-    return transformFirstLetterInUppercase(mealType);
+  displayMealTypeNormalized(mealType: SystemOption): string {
+    const mealTypeString = environment.selectedLanguage === 'Portuguese' ? mealType.displayValuePortuguese : mealType.displayValueEnglish;
+    return transformFirstLetterInUppercase(mealTypeString);
   }
 
   navigateToDetails(recipeId: number): void {

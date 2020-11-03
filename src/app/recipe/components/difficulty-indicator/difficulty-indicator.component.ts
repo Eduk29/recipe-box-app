@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { transformFirstLetterInUppercase } from './../../../core/utils/system.utils';
 import { SystemOption } from './../../../core/models/system-option.model';
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
@@ -22,7 +23,10 @@ export class DifficultyIndicatorComponent implements OnInit {
   }
 
   private setDifficultyLevel(): void {
-    this.tooltipDifficultyLevel = transformFirstLetterInUppercase(this.recipeDifficulty.displayValue);
+    const recipeDifficultyString = environment.selectedLanguage === 'Portuguese' ?
+      this.recipeDifficulty.displayValuePortuguese :
+      this.recipeDifficulty.displayValueEnglish;
+    this.tooltipDifficultyLevel = transformFirstLetterInUppercase(recipeDifficultyString);
     switch (this.recipeDifficulty.systemValue) {
       case 1:
         this.difficultyLevel = this.generateNumberDifficultyIcon(1);

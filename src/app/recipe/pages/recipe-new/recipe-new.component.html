@@ -1,11 +1,11 @@
 <mat-card class="container">
   <mat-card-content>
     <div class="row">
-      <div class="col-2">
-        url imagem
+      <div class="col-3">
+        <img [src]="recipe.urlImage" alt=" Recipe avatar" class="w-100" />
       </div>
-      <div *ngIf="!!recipeForm" class="col-10">
-        <app-recipe-form [recipeForm]="recipeForm" (emitterOnSubmit)="onSubmit()"></app-recipe-form>
+      <div *ngIf=" !!recipe" class="col-9">
+        <app-recipe-form [recipe]="recipe" (emitterOnSubmit)="onSubmit()"></app-recipe-form>
       </div>
     </div>
   </mat-card-content>

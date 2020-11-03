@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlApi: 'https://my-json-server.typicode.com/Eduk29/recipe-box-api'
+  urlApi: 'https://my-json-server.typicode.com/Eduk29/recipe-box-api',
+  selectedLanguage: 'Portuguese'
 };
 
 /*

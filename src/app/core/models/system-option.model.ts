@@ -1,4 +1,5 @@
 export interface SystemOption {
   systemValue?: number;
-  displayValue?: string;
+  displayValueEnglish?: string;
+  displayValuePortuguese?: string;
 }

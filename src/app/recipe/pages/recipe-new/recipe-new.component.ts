@@ -1,32 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Recipe } from 'src/app/core/models/recipe.model';
 
 @Component({
   templateUrl: './recipe-new.component.html',
   styleUrls: ['./recipe-new.component.scss']
 })
 export class RecipeNewComponent implements OnInit {
-  recipeForm: FormGroup;
+  recipe: Recipe = {};
 
-  constructor() {
-    this.createForm();
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  private createForm(): void {
-    this.recipeForm = new FormGroup({
-      name: new FormControl(),
-      difficultyLevel: new FormControl(),
-      mealType: new FormControl(),
-      servesTo: new FormControl(),
-      urlImage: new FormControl()
-    });
-  }
-
   onSubmit(): void {
-    console.log('Form: ', this.recipeForm.value);
+    console.log('Form: ', this.recipe);
   }
-
 }
