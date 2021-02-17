@@ -19,16 +19,15 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
   public recipe: Recipe;
   public relatedRecipes: Recipe[];
 
-  constructor(private activatedRoute: ActivatedRoute, private recipeService: RecipeService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private recipeService: RecipeService
+  ) {
     this.loadingData = false;
     this.getRecipeId();
   }
 
-  ngOnInit(): void {
-    if (!!this.recipeId) {
-      this.getRecipe();
-    }
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
@@ -39,6 +38,7 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
     this.activatedRoute.params
       .subscribe(params => {
         this.recipeId = +params.id;
+        this.getRecipe();
       });
   }
 
@@ -47,8 +47,7 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
     this.recipeService
       .getRecipe(this.recipeId)
       .pipe(
-        switchMap((recipe) => this.getRelatedRecipes(recipe)),
-        pluck(0),
+        tap((recipe) => this.getRelatedRecipes(recipe)),
         takeUntil(this.onDestroy$),
         finalize(() => this.loadingData = false)
       )
@@ -57,16 +56,17 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  getRelatedRecipes(recipeItem: Recipe): Observable<any> {
+  getRelatedRecipes(recipeItem: Recipe): void {
     const filter = `?mealType.systemValue=${recipeItem.mealType.systemValue}`;
     this.loadingData = true;
-    return this.recipeService
+    this.recipeService
       .listAll(filter)
       .pipe(
-        tap((relatedRecipes: Recipe[]) => this.relatedRecipes = this.filterRelatedRecipes(relatedRecipes, recipeItem)),
         takeUntil(this.onDestroy$),
         finalize(() => this.loadingData = false)
-      );
+      ).subscribe ((relatedRecipes: Recipe[]) => {
+        this.relatedRecipes = this.filterRelatedRecipes(relatedRecipes, recipeItem)
+      })
   }
 
   private filterRelatedRecipes(relatedRecipes: Recipe[], recipeItem: Recipe): Recipe[] {
