@@ -16,7 +16,7 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.recipeList) {
-      throw new Error('Must have a Recipe List');
+      throw new Error('Must have a Recipe List. Please check the service!');
     }
   }
 }

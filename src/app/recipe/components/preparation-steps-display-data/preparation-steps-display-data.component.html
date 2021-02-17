@@ -1,4 +1,17 @@
-<div class="d-flex flex-row">
-  <span class="d-flex align-items-center mat-title pr-2 m-0"> {{ preparationStep?.id }})</span>
-  <span class="mat-subheading-2 px-2 m-0">{{ preparationStep?.description }}</span>
+<div *ngIf="!!preparationStep" class="d-flex flex-row align-items-center my-3">
+	<span class="d-flex align-items-center mat-title pr-2 m-0">
+		{{ preparationStep?.id }}.
+  </span>
+	<span class="mat-subheading-2 px-2 m-0">
+    {{ preparationStep?.description }}
+  </span>
+	<button
+		*ngIf="!readOnly"
+		type="button"
+		mat-icon-button
+		matTooltip="Remover ingrediente"
+		color="primary"
+		(click)="removePreparationStep(preparationStep)">
+		<em class="fas fa-trash"></em>
+	</button>
 </div>

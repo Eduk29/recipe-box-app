@@ -1,4 +1,13 @@
-<span class="mat-headline">Modo de fazer</span>
-<div *ngFor="let step of preparationSteps" class="my-2 ml-4">
-  <app-preparation-steps-display-data [preparationStep]="step"></app-preparation-steps-display-data>
-</div>
+<h3> Modo de Fazer </h3>
+<ul *ngIf="!!preparationSteps && preparationSteps.length > 0; else noPreparationSteps">
+  <span *ngFor="let step of preparationSteps">
+    <app-preparation-steps-display-data [preparationStep]="step" [readOnly]="readOnly"
+    (eventRemovePreparationStep)="removePreparationStep($event)"></app-preparation-steps-display-data>
+  </span>
+</ul>
+
+<ng-template #noPreparationSteps>
+  <ul>
+    <li>Sem modo de preparo adicionado.</li>
+  </ul>
+</ng-template>

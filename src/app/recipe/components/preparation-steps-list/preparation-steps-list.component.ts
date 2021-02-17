@@ -1,5 +1,5 @@
 import { PreparationStep } from './../../../core/models/preparationStep.model';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-preparation-steps-list',
@@ -10,10 +10,16 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 export class PreparationStepsListComponent implements OnInit {
 
   @Input() preparationSteps: PreparationStep[];
+  @Input() readOnly?: boolean = true;
+  @Output() eventRemovePreparationStep = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  removePreparationStep(preparationStep: PreparationStep): void {
+    this.eventRemovePreparationStep.emit(preparationStep);
   }
 
 }

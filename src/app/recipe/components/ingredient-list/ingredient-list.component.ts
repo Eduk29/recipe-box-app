@@ -12,6 +12,7 @@ export class IngredientListComponent implements OnInit {
   @Input() ingredients: Ingredient[];
   @Input() readOnly?: boolean = true;
   @Output() eventRemoveIngredient = new EventEmitter();
+  @Output() eventAddAlternativeIngredient = new EventEmitter();
 
   constructor() { }
 
@@ -22,5 +23,7 @@ export class IngredientListComponent implements OnInit {
     this.eventRemoveIngredient.emit(ingredient);
   }
 
-
+  addAlternativeIngredient(ingredient: Ingredient): void {
+    this.eventAddAlternativeIngredient.emit(ingredient)
+  }
 }

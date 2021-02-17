@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/core/models/recipe.model';
+
+import { RecipeService } from './../../services/recipe.service';
 
 @Component({
   templateUrl: './recipe-new.component.html',
@@ -9,12 +11,20 @@ import { Recipe } from 'src/app/core/models/recipe.model';
 export class RecipeNewComponent implements OnInit {
   recipe: Recipe = {};
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    console.log('Form: ', this.recipe);
+    this.save();
+  }
+
+  private save(): void {
+    this.recipeService
+      .save(this.recipe)
+      .subscribe((result: Recipe) => {
+        console.log('result: ', result)
+      })
   }
 }

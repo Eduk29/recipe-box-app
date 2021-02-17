@@ -1,0 +1,23 @@
+<div class="px-2 py-4">
+	<h1 mat-dialog-title>Adicionar ingrediente alternativo</h1>
+	<div mat-dialog-content>
+		<p>Qual o ingrediente alternativo para {{ ingredient?.description }}?</p>
+		<mat-form-field class="w-100">
+			<mat-label>Ingrediente alternativo</mat-label>
+			<input
+				matInput
+				placeholder="1kg de Farinha de Trigo Integral"
+				[(ngModel)]="newAlternativeIngredient.description"/>
+		</mat-form-field>
+	</div>
+	<div mat-dialog-actions class="mt-3">
+		<button mat-button color="warn" (click)="onNoClick()">Cancelar</button>
+		<button
+      mat-flat-button color="primary"
+      [disabled]="newAlternativeIngredient.description == '' || newAlternativeIngredient.description == undefined"
+			[mat-dialog-close]="newAlternativeIngredient"
+			cdkFocusInitial>
+			Adicionar
+		</button>
+	</div>
+</div>

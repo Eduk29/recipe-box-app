@@ -12,6 +12,7 @@ export class IngredientDisplayDataComponent implements OnInit {
   @Input() ingredient: Ingredient;
   @Input() readOnly?: boolean = true;
   @Output() eventRemoveIngredient = new EventEmitter();
+  @Output() eventAddAlternativeIngredient = new EventEmitter();
 
   constructor() { }
 
@@ -20,6 +21,10 @@ export class IngredientDisplayDataComponent implements OnInit {
 
   public removeIngredient(ingredient: Ingredient): void {
     this.eventRemoveIngredient.emit(ingredient);
+  }
+
+  public addAlternativeIngredient(ingredient: Ingredient): void {
+    this.eventAddAlternativeIngredient.emit(ingredient);
   }
 
 }

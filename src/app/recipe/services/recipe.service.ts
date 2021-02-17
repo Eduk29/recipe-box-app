@@ -25,4 +25,9 @@ export class RecipeService {
     const url = `${this.urlAPI}/${id}`;
     return this.httpRequest.get<Recipe>(url);
   }
+
+  save(recipe: Recipe): Observable<Recipe> {
+    const url = `${this.urlAPI}`;
+    return this.httpRequest.post<Recipe>(url, recipe);
+  }
 }

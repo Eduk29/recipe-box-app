@@ -19,7 +19,7 @@ export class RecipeCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.recipe) {
-      throw new Error('Must have a Recipe List');
+      throw new Error('Must have a Recipe List. Please check the service!');
     }
   }
 

@@ -1,11 +1,27 @@
 <div *ngIf="!!ingredient" class="d-flex flex-row align-items-center">
-  <span class="px-1">{{ ingredient?.description }}</span>
-  <div *ngIf="!!ingredient.alternativeIngredient" class="d-flex flex-row">
-    <span class="px-1">or</span>
-    <app-ingredient-display-data [ingredient]="ingredient.alternativeIngredient"></app-ingredient-display-data>
-  </div>
-  <button *ngIf="!readOnly" type="button" mat-icon-button matTooltip="Remover ingrediente" color="primary"
-    (click)="removeIngredient(ingredient)">
-    <em class="fas fa-trash"></em>
-  </button>
+	<span class="px-1">{{ ingredient?.description }}</span>
+	<div *ngIf="!!ingredient.alternativeIngredient" class="d-flex flex-row">
+		<span class="px-1">ou</span>
+		<app-ingredient-display-data
+			[ingredient]="ingredient.alternativeIngredient">
+    </app-ingredient-display-data>
+	</div>
+	<button
+		*ngIf="!readOnly"
+		type="button"
+		mat-icon-button
+		matTooltip="Remover ingrediente"
+		color="primary"
+		(click)="removeIngredient(ingredient)">
+		  <em class="fas fa-trash"></em>
+	</button>
+	<button
+		*ngIf="!readOnly"
+		type="button"
+		mat-icon-button
+		matTooltip="Adicionar ingrediente alternativo"
+		color="primary"
+		(click)="addAlternativeIngredient(ingredient)">
+	  	<em class="fas fa-plus"></em>
+	</button>
 </div>
