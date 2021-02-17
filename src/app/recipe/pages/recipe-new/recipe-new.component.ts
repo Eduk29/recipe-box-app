@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/core/models/recipe.model';
@@ -11,7 +12,11 @@ import { RecipeService } from './../../services/recipe.service';
 export class RecipeNewComponent implements OnInit {
   recipe: Recipe = {};
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private recipeService: RecipeService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +29,8 @@ export class RecipeNewComponent implements OnInit {
     this.recipeService
       .save(this.recipe)
       .subscribe((result: Recipe) => {
-        console.log('result: ', result)
+        this.router.navigate(['..'], {relativeTo: this.activatedRoute})
+        // TODO: Add feedback message
       })
   }
 }
