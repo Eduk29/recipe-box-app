@@ -1,111 +1,108 @@
-	<div class="row">
-		<mat-form-field class="col-6">
-			<mat-label>Nome</mat-label>
-			<input name="name" matInput [(ngModel)]="recipe.name" />
-		</mat-form-field>
+<div class="row">
+	<mat-form-field class="col-6">
+		<mat-label>Nome</mat-label>
+		<input name="name" matInput [(ngModel)]="recipe.name" />
+	</mat-form-field>
 
-		<mat-form-field class="col-2">
-			<mat-label>Rendimento</mat-label>
+	<mat-form-field class="col-2">
+		<mat-label>Rendimento</mat-label>
+		<input
+			name="servesTo"
+			matInput
+			type="number"
+			min="1"
+			[(ngModel)]="recipe.serverTo"
+		/>
+	</mat-form-field>
+
+	<mat-form-field class="col-4">
+		<mat-label>Tipo de Prato</mat-label>
+		<mat-select name="mealType" [(ngModel)]="recipe.mealType">
+			<mat-option *ngFor="let mealType of mealTypeOptions" [value]="mealType">
+				{{ displaySelectFilterLabel(mealType) }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+<div class="row">
+	<mat-form-field class="col-8">
+		<mat-label>Avatar (URL)</mat-label>
+		<input matInput name="url-image" [(ngModel)]="recipe.urlImage" />
+	</mat-form-field>
+
+	<mat-form-field class="col-4">
+		<mat-label>Nível de Dificuldade</mat-label>
+		<mat-select name="difficultyLevel" [(ngModel)]="recipe.difficultyLevel">
+			<mat-option
+				*ngFor="let difficultyLevel of difficultyLevelOptions"
+				[value]="difficultyLevel">
+				{{ displaySelectFilterLabel(difficultyLevel) }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+
+<!-- Ingredient Area -->
+<div class="d-flex flex-column py-2">
+	<app-ingredient-list
+		[ingredients]="recipe?.ingredients"
+		[readOnly]="false"
+		(eventRemoveIngredient)="removeIngredient($event)"
+		(eventAddAlternativeIngredient)="addAlternativeIngredient($event)">
+	</app-ingredient-list>
+
+	<!-- Ingredient Register Area -->
+	<div class="row align-items-center">
+		<mat-form-field class="col-10">
+			<mat-label>Ingrediente</mat-label>
 			<input
-				name="servesTo"
+				name="ingredient-descripition"
 				matInput
-				type="number"
-				min="1"
-				[(ngModel)]="recipe.serverTo"/>
+				placeholder="Ex. 1kg de farinha de trigo"
+				[(ngModel)]="newIngredient.description"/>
 		</mat-form-field>
+		<button
+			type="button"
+			[disabled]="
+				newIngredient.description === '' ||
+				newIngredient.description === undefined"
+			matTooltip="Adicionar ingrediente"
+			mat-mini-fab
+			color="primary"
+			(click)="addNewIngredient()">
+			<em class="fas fa-plus"></em>
+		</button>
+	</div>
+</div>
 
-		<mat-form-field class="col-4">
-			<mat-label>Tipo de Prato</mat-label>
-			<mat-select name="mealType" [(ngModel)]="recipe.mealType">
-				<mat-option *ngFor="let mealType of mealTypeOptions" [value]="mealType">
-					{{ displaySelectFilterLabel(mealType) }}
-				</mat-option>
-			</mat-select>
+<!-- Preparation Steps Area -->
+<div class="d-flex flex-column py-2">
+	<app-preparation-steps-list
+		[preparationSteps]="recipe?.preparationSteps"
+		[readOnly]="false"
+		(eventRemovePreparationStep)="removePreparationStep($event)">
+	</app-preparation-steps-list>
+
+	<!-- Preparation Steps Register Area -->
+	<div class="row align-items-center">
+		<mat-form-field class="col-10">
+			<mat-label>Modo de preparo</mat-label>
+			<input
+				name="preparation-step-descripition"
+				matInput
+				placeholder="Ex. Misturar todos os ingredientes"
+				[(ngModel)]="newPreparationStep.description"/>
 		</mat-form-field>
+		<button
+			type="button"
+			[disabled]="
+				newPreparationStep.description === '' ||
+				newPreparationStep.description === undefined"
+			matTooltip="Adicionar passo ao modo de preparo"
+			mat-mini-fab
+			color="primary"
+			(click)="addNewPreparationStep()">
+			<em class="fas fa-plus"></em>
+		</button>
 	</div>
-	<div class="row">
-		<mat-form-field class="col-8">
-			<mat-label>Avatar (URL)</mat-label>
-			<input matInput name="url-image" [(ngModel)]="recipe.urlImage" />
-		</mat-form-field>
-
-		<mat-form-field class="col-4">
-			<mat-label>Nível de Dificuldade</mat-label>
-			<mat-select name="difficultyLevel" [(ngModel)]="recipe.difficultyLevel">
-				<mat-option
-					*ngFor="let difficultyLevel of difficultyLevelOptions"
-					[value]="difficultyLevel">
-					  {{ displaySelectFilterLabel(difficultyLevel) }}
-				</mat-option>
-			</mat-select>
-		</mat-form-field>
-	</div>
-
-	<!-- Ingredient Area -->
-	<div class="d-flex flex-column py-2">
-		<app-ingredient-list
-			[ingredients]="recipe?.ingredients"
-			[readOnly]="false"
-			(eventRemoveIngredient)="removeIngredient($event)"
-      (eventAddAlternativeIngredient)="addAlternativeIngredient($event)"
-		>
-		</app-ingredient-list>
-
-		<!-- Ingredient Register Area -->
-		<div class="row align-items-center">
-			<mat-form-field class="col-10">
-				<mat-label>Ingrediente</mat-label>
-				<input
-					name="ingredient-descripition"
-					matInput
-					placeholder="Ex. 1kg de farinha de trigo"
-					[(ngModel)]="newIngredient.description"
-				/>
-			</mat-form-field>
-			<button
-				type="button"
-        [disabled]="newIngredient.description === '' || newIngredient.description === undefined"
-				matTooltip="Adicionar ingrediente"
-				mat-mini-fab
-				color="primary"
-				(click)="addNewIngredient()"
-			>
-				<em class="fas fa-plus"></em>
-			</button>
-		</div>
-	</div>
-
-	<!-- Preparation Steps Area -->
-	<div class="d-flex flex-column py-2">
-		<app-preparation-steps-list
-			[preparationSteps]="recipe?.preparationSteps"
-			[readOnly]="false"
-			(eventRemovePreparationStep)="removePreparationStep($event)"
-		>
-		</app-preparation-steps-list>
-
-		<!-- Preparation Steps Register Area -->
-		<div class="row align-items-center">
-			<mat-form-field class="col-10">
-				<mat-label>Modo de preparo</mat-label>
-				<input
-					name="preparation-step-descripition"
-					matInput
-					placeholder="Ex. Misturar todos os ingredientes"
-					[(ngModel)]="newPreparationStep.description"
-				/>
-			</mat-form-field>
-			<button
-				type="button"
-        [disabled]="newPreparationStep.description === '' || newPreparationStep.description === undefined"
-				matTooltip="Adicionar passo ao modo de preparo"
-				mat-mini-fab
-				color="primary"
-				(click)="addNewPreparationStep()"
-			>
-				<em class="fas fa-plus"></em>
-			</button>
-		</div>
-	</div>
-
-	<button mat-button type="submit">Salvar</button>
+</div>

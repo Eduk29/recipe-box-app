@@ -69,6 +69,10 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
       })
   }
 
+  onClickBack(): void {
+    history.back();
+  }
+
   private filterRelatedRecipes(relatedRecipes: Recipe[], recipeItem: Recipe): Recipe[] {
     return relatedRecipes.filter(item => item.id !== recipeItem.id);
   }

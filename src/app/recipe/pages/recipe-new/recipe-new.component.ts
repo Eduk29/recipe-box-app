@@ -21,6 +21,10 @@ export class RecipeNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onCancelAction(): void {
+    history.back();
+  }
+
   onSubmit(): void {
     this.save();
   }

@@ -10,6 +10,8 @@
       <div *ngIf=" !!recipe" class="col-9">
         <form #recipeForm="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
           <app-recipe-form [recipe]="recipe"></app-recipe-form>
+          <button mat-flat-button color="primary" type="submit" class="mx-2">Salvar</button>
+          <button mat-button color="warn" type="button" (click)="onCancelAction()" class="mx-2">Voltar</button>
         </form>
       </div>
     </div>
